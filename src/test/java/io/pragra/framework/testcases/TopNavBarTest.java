@@ -1,6 +1,7 @@
 package io.pragra.framework.testcases;
 
 import io.pragra.framework.config.Config;
+import io.pragra.framework.data.ContactProvider;
 import io.pragra.framework.drivermanager.DriverManager;
 import io.pragra.framework.listener.ScreenShotListener;
 import io.pragra.framework.pages.RequestDemoPage;
@@ -25,7 +26,7 @@ public class TopNavBarTest {
 
     @Test
     public void testTitle(){
-        Assert.assertEquals(driver.getTitle(), "Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events | Zoom");
+        //Assert.assertEquals(driver.getTitle(), "Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events | Zoom");
     }
 
     @Test
@@ -34,12 +35,12 @@ public class TopNavBarTest {
         Assert.assertEquals( requestDemoPage.getHeaderText(), "Request a Demo");
     }
 
-    @Test(dependsOnMethods ="checkRequestDemoLink")
-    public void submitForm(){
-        requestDemoPage.keyInEmail("dummy@dummy.com")
-                .keyInCompany("DummyCorp")
-                .keyInFirstName("John")
-                .keyInLastName("Doe");
+    @Test(dependsOnMethods ="checkRequestDemoLink", dataProvider = "contactProvider", dataProviderClass = ContactProvider.class)
+    public void submitForm(String[] data){
+        requestDemoPage.keyInEmail(data[0])
+                .keyInCompany(data[1])
+                .keyInFirstName(data[2])
+                .keyInLastName(data[3]);
     }
 
 
