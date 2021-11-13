@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="pragra-suite">
+    <parameter name="url" value="https://zoom.us"></parameter>
+    <test name="dummy">
+        <classes>
+            <class name="HomeTest"></class>
+        </classes>
+    </test>
+</suite>
